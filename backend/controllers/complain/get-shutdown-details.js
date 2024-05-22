@@ -26,7 +26,7 @@ const getShutdownDetails = async (req, res) => {
         );
 
         let gangDetails =  await ShutDownModel.findOne(
-            { _id: complainDetails.gang_id }
+            { _id: complainDetails?.gang_id }
         );
 
         const status = await StatusModel.findById(complainDetails?.status)

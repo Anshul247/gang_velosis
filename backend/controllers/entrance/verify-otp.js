@@ -31,7 +31,7 @@ const verifyOtp = (req, res) => {
                             message: 'OTP verified successfully.',
                             status: 200
                         };
-                        return res.status(200).json({ data });
+                        return res.status(200).json( data);
                     })
                     .catch(err => {
                         return res.status(400).json({ message: 'Internal server error.', status: 400 });
