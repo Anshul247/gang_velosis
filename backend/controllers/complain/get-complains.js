@@ -60,8 +60,8 @@ const getComplains = async (req, res) => {
 
                 // Build response object with complain details and status
                 response.push({
-                    SERVICE_ORDER_NO: complain.SERVICE_ORDER_NO,
-                    COMPLAIN_NO: complain.COMPLAIN_NO,
+                    SERVICE_ORDER_NO: complain.service_order_no,
+                    COMPLAIN_NO: complain.complain_no,
                     AccountId: complain.consumer_account_no,
                     shutdown_request_by: complain.shutdown_request_by,
                     registration_date: complain.registration_date,
@@ -127,8 +127,8 @@ const getComplains = async (req, res) => {
 
                 // Build response object with complain details and status
                 response.push({
-                    SERVICE_ORDER_NO: complain.SERVICE_ORDER_NO,
-                    COMPLAIN_NO: complain.COMPLAIN_NO,
+                    SERVICE_ORDER_NO: complain.service_order_no,
+                    COMPLAIN_NO: complain.complain_no,
                     AccountId: complain.consumer_account_no,
                     shutdown_request_by: complain.shutdown_request_by,
                     registration_date: complain.registration_date,

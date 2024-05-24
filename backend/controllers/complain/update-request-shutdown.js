@@ -29,7 +29,7 @@ const updateRequestShutdown = async (req, res) => {
         );
 
         await ComplainModel.findOneAndUpdate(
-            { COMPLAIN_NO: complain_no },
+            { complain_no: complain_no },
             { $set: { status: statusIdFound } }
         );
 

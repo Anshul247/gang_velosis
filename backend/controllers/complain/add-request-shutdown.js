@@ -43,7 +43,7 @@ const addRequestShutdown = (req, res) => {
 
 
             ComplainModel.findOneAndUpdate(
-                { COMPLAIN_NO: complain_no },
+                { complain_no: complain_no },
                 { $set: { status: statusIdFound } }
             ).catch((error) => {
                 return res.status(500).json({ error: 'Internal server error. 1' });

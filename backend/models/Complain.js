@@ -5,15 +5,15 @@ const ComplaintSchema = new Schema({
 
 // const ComplaintSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  DIVISION_UID: {
+  division_uid: {
     type: String,
     required: true
   },
-  COMPLAIN_NO: {
+  complain_no: {
     type: String,
     required: true
   },
-  SERVICE_ORDER_NO: {
+  service_order_no: {
     type: String,
     required: true
   },

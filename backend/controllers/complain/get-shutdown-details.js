@@ -22,7 +22,7 @@ const getShutdownDetails = async (req, res) => {
        
 
        let complainDetails =  await ComplainModel.findOne(
-            { COMPLAIN_NO: complain_no }
+            { complain_no: complain_no }
         );
 
         let gangDetails =  await ShutDownModel.findOne(
@@ -39,7 +39,7 @@ const getShutdownDetails = async (req, res) => {
         console.log("gangDetails status",gangDetails);
 
         const {
-            COMPLAIN_NO,
+            complain_no,
             complaint_type,
             consumer_account_no,
             consumer_name,
@@ -51,7 +51,7 @@ const getShutdownDetails = async (req, res) => {
         } = complainDetails;
         
         const details = {
-            COMPLAIN_NO,
+            complain_no,
             complaint_type,
             consumer_account_no,
             consumer_name,
