@@ -115,7 +115,7 @@ const  AGENCY_SOURCE =   storedConsumer._id
         .then(async result => {
             res.status(200).json({
                 message: "Data Added Successfully",
-                consumerRequest: result,
+                complaintNumber: result.COMPLAINT_NO,
                 status: 200
             });
         })
