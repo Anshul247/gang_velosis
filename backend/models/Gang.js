@@ -14,7 +14,7 @@ const securityEquipmentSchema = new Schema({
 });
 
 const gangSchema = new Schema({
-    GANG_UID: String,
+    gang_id: String,
     location: String,
     leader: String,
     nearest_substation: String,
@@ -28,3 +28,4 @@ const gangSchema = new Schema({
 });
 
 module.exports = mongoose.model('gang_details', gangSchema);
+ 

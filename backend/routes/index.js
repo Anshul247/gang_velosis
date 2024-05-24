@@ -11,7 +11,6 @@ const complainRouter = require("./complain");
  
 router.use("/entrance", entranceRouter);
 router.use("/complain", complainRouter);
- 
 router.use("/users", usersRouter);
  
 
