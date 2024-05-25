@@ -33,7 +33,7 @@ const updateRequestShutdown = async (req, res) => {
       
 
      let complaintDetails =   await ComplainModel.findOneAndUpdate(
-            { COMPLAIN_NO: complain_no },
+            { complain_no: complain_no },
             { $set: { status: statusIdFound } }
         );
 
