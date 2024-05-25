@@ -10,7 +10,7 @@ const getDataFromConsumer = async (req, res) => {
 
    const authHeader = req.headers['authorization'];
    if (!authHeader || !authHeader.startsWith('Basic ')) {
-       return res.status(400).json({ error: 'Missing or invalid authorization header' });
+       return res.status(401).json({ message: 'Missing or invalid authorization header', status: 401 });
    }
 
    // Decode the Basic Auth credentials
@@ -18,7 +18,7 @@ const getDataFromConsumer = async (req, res) => {
    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
    const [username, password] = credentials.split(':');
    if (!username || !password) {
-       return res.status(400).json({ error: 'Username and password are required' });
+       return res.status(400).json({ message: 'Username and password are required',status: 400 });
    }
 
 //    console.log("username getDataFromConsumer req headers username",username );
@@ -29,7 +29,7 @@ const getDataFromConsumer = async (req, res) => {
            console.log("storedConsumer",storedConsumer);
 
    if (!storedConsumer) {
-       return res.status(404).json({ message: 'Consumer not found', status: 400 });
+       return res.status(404).json({ message: 'Consumer not found', status: 404 });
    }
 
 
@@ -122,7 +122,7 @@ const  AGENCY_SOURCE =   storedConsumer._id
         .catch(err => {
             res.status(500).json({
                 error: err.message,
-                message: "Internal Server Error",
+                message: "Error In Saving Data to Database",
                 status: 500
             });
         });
