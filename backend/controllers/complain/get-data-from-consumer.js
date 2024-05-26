@@ -13,7 +13,7 @@ const getDataFromConsumer = async (req, res) => {
        return res.status(401).json({ message: 'Missing or invalid authorization header', status: 401 });
    }
  
-   // Decode the Basic Auth credentials
+   // Decode the Basic Auth cr edentials
    const base64Credentials = authHeader.split(' ')[1];  
    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii');
    const [username, password] = credentials.split(':');
