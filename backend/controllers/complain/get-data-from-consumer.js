@@ -4,7 +4,7 @@ const GetConsumerData = require("../../models/GetConsumerData");
 const ComplaintAgency = require("../../models/ComplaintAgency");
  
 
- 
+  
 
 const getDataFromConsumer = async (req, res) => {
 
