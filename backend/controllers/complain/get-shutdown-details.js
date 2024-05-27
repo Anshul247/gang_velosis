@@ -173,6 +173,7 @@ const getShutdownDetails = async (req, res) => {
             registration_date,
             site_pic:gangDetails.site_pic,
             equipment_pic:gangDetails.equipment_pic,             
+            current_sit_pic:gangDetails.current_sit_pic,             
             start_time:gangDetails.start_time,
             end_time:gangDetails.end_time,
         };

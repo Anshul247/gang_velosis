@@ -6,7 +6,6 @@ const getShutdownDetails = require('./get-shutdown-details');
 const getDataFromConsumer = require('./get-data-from-consumer');
   
 
-// router.post('/get-data-from-consumer', complainController.getDataFromConsumer);
 
 
 module.exports = {
