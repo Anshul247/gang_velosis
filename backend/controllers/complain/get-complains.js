@@ -40,7 +40,8 @@ const getComplains = async (req, res) => {
         if (data.role_name === 'SSO') {
             // for SSO
             // const complains = await ComplainModel.find({ assigned_area_userID: assigned_area_userID })
-            const complains = await ComplainModel.find({ status: { $in: _ids } })
+            const complains = await ComplainModel.find({ status: { $in: _ids }, substation_id: user.substation_id })
+                
                 .populate('assigned_area_userID', '-password -otp');
 
             if (!complains || complains.length === 0) {
@@ -106,7 +107,9 @@ const getComplains = async (req, res) => {
                 .filter(status => statusIds.includes(status.status_id))
                 .map(status => status._id);
             // Fetch complaints
-            const complains = await ComplainModel.find({ status: { $in: _ids } })
+            // const complains = await ComplainModel.find({ status: { $in: _ids } })
+            const complains = await ComplainModel.find({ status: { $in: _ids }, substation_id: user.substation_id })
+
 
                 .populate('assigned_area_userID', '-password -otp');
 

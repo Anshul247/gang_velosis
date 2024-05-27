@@ -40,6 +40,8 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
   }),
+  substation_id: { type: mongoose.Schema.Types.ObjectId 
+  },
 });
 
 const Users = mongoose.model("Users", UserSchema);

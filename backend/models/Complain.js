@@ -68,7 +68,9 @@ const ComplaintSchema = new Schema({
   registration_date: Date,
   shutdown_request_date: Date,
   shutdown_request_by: String,
-  complaint_update: String
+  complaint_update: String,
+  substation_id: { type: mongoose.Schema.Types.ObjectId 
+  },
 });
 
 const ComplaintModel = mongoose.model('complain_details', ComplaintSchema);
