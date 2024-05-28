@@ -77,6 +77,7 @@ const addRequestShutdown = async (req, res) => {
         start_time,
         end_time,
         shutdown_status,
+        gang_id
     } = req.body;
 
     const shutdownRequest = new ShutDownModel({
@@ -92,6 +93,7 @@ const addRequestShutdown = async (req, res) => {
         start_time,
         end_time,
         shutdown_status,
+        gang_id
     });
 
     try {

@@ -6,7 +6,9 @@ const getShutdownDetails = require('./get-shutdown-details');
 const getDataFromConsumer = require('./get-data-from-consumer');
 const assignComplain = require('./assign-complain');
 const getComplainsByGangs = require('./get-complains-by-gangs');
+const getComplainsBy1912 = require('./get-complains-by-1912');
   
+
 
 
 
@@ -17,5 +19,6 @@ module.exports = {
     getShutdownDetails,
     getDataFromConsumer,
     assignComplain,
-    getComplainsByGangs
+    getComplainsByGangs,
+    getComplainsBy1912
  };

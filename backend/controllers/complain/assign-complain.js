@@ -24,7 +24,8 @@ const assignComplain = async (req, res) => {
         await Promise.all(
             complain_no.map((complain) =>
                 ComplainModel.findOneAndUpdate(
-                    { complain_no: complain, status: notStartedStatusID },
+                    // { complain_no: complain, status: notStartedStatusID },
+                    { complain_no: complain,  status: { $in: [notStartedStatusID, assignedStatusID] } },
                     { $set: { gang_id: gang_id,status: assignedStatusID } }
                     
                 )

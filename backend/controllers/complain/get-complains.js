@@ -28,7 +28,7 @@ const getComplains = async (req, res) => {
         };
         const allStatus = await StatusModel.find();
         console.log("allStatus", allStatus);
-        const statusIds = [1, 2, 3];
+        const statusIds = [1, 2, 3, 4, 7, 8];
 
         // Filter the allStatus array based on the status IDs and extract _id fields
         const _ids = allStatus
@@ -76,7 +76,7 @@ const getComplains = async (req, res) => {
             // After all status queries are complete, calculate total counts and filter complaints
             const finalRes = [];
             // if (data.role_name === 'SSO') {
-            finalRes.push(1, 2, 3); // Status IDs allowed for SSO role
+            finalRes.push(1, 2, 3, 4, 7, 8); // Status IDs allowed for SSO role
 
             const filteredResponse = response.filter(complain => finalRes.includes(complain.status_id));
             let responseObject = {};
@@ -85,12 +85,20 @@ const getComplains = async (req, res) => {
             const totalPending = filteredResponse.filter(complain => complain.status_id === 1).length;
             const totalApproved = filteredResponse.filter(complain => complain.status_id === 2).length;
             const totalRejected = filteredResponse.filter(complain => complain.status_id === 3).length;
+            const totalInProgress = filteredResponse.filter(complain => complain.status_id === 4).length;
+            const totalResolved = filteredResponse.filter(complain => complain.status_id === 7).length;
+            const totalHold = filteredResponse.filter(complain => complain.status_id === 8).length;
+
 
             responseObject = {
                 totalPending,
                 totalApproved,
                 totalRejected,
-                totalComplain: totalPending + totalApproved + totalRejected, // Calculate total complaints
+                totalInProgress,
+                totalResolved,
+                totalHold,
+                totalComplain: 0, // Calculate total complaints
+                // totalComplain: totalPending + totalApproved + totalRejected + totalInProgress, // Calculate total complaints
                 complaints: filteredResponse,
                 role: data,
                 message: 'Details fetched successfully.',
@@ -101,14 +109,14 @@ const getComplains = async (req, res) => {
         } else {
 
 
-            const statusIds = [4, 5, 6, 7];
+            const statusIds = [4, 5, 6, 7, 8];
 
             const _ids = allStatus
                 .filter(status => statusIds.includes(status.status_id))
                 .map(status => status._id);
             // Fetch complaints
             // const complains = await ComplainModel.find({ status: { $in: _ids } })
-            const complains = await ComplainModel.find({ status: { $in: _ids }, substation_id: user.substation_id })
+            const complains = await ComplainModel.find({ status: { $in: _ids }, substation_id: user.substation_id,gang_id:assigned_area_userID })
 
 
                 .populate('assigned_area_userID', '-password -otp');
@@ -146,7 +154,7 @@ const getComplains = async (req, res) => {
             const finalRes = [];
 
             if (data.role_name === 'GANG') {
-                finalRes.push(4, 5, 6, 7);
+                finalRes.push(4, 5, 6, 7, 8);
             }
 
             // Filter response object based on allowed status IDs
@@ -156,6 +164,7 @@ const getComplains = async (req, res) => {
             if (data.role_name === 'GANG') {
                 const totalAssigned = filteredResponse.filter(complain => complain.status_id === 5).length;
                 const totalResolved = filteredResponse.filter(complain => complain.status_id === 7).length;
+                const totalHold = filteredResponse.filter(complain => complain.status_id === 8).length;
                 const totalInProgress = filteredResponse.filter(complain => complain.status_id === 4).length;
                 const totalShutdownInitiated = filteredResponse.filter(complain => complain.status_id === 6).length;
 
@@ -164,7 +173,9 @@ const getComplains = async (req, res) => {
                     totalResolved,
                     totalInProgress,
                     totalShutdownInitiated,
-                    totalComplain: totalAssigned + totalResolved + totalInProgress + totalShutdownInitiated, // Calculate total complaints
+                    totalHold,
+                    totalComplain: 0, // Calculate total complaints
+                    // totalComplain: totalAssigned + totalResolved + totalInProgress + totalShutdownInitiated, // Calculate total complaints
                     complaints: filteredResponse,
                     role: data,
                     message: 'Details fetched successfully.',

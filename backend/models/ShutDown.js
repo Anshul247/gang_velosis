@@ -29,7 +29,9 @@ const shutDownSchema = new Schema({
     remark: { type: String, required: false },
     start_time: { type: String, required: false },
     end_time: { type: String, required: false },
-    gang_id: { type: String, required: false },
+    // gang_id: { type: String, required: false },
+    gang_id: { type: mongoose.Schema.Types.ObjectId 
+    },
     shutdown_status: { type: String, required: false },
     gang_member: { type: [GangMemberSchema], required: false },
     contact_number: { type: String, required: false },
