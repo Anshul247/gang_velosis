@@ -1,6 +1,7 @@
 
 const ComplainModel = require("../../models/Complain");
 const StatusModel = require("../../models/Status");
+const UserModel = require("../../models/Users");
 
  
 
@@ -36,6 +37,13 @@ console.log("complainasdasd",complain);
                     return null;
                 });
 
+                const gangDetails = await UserModel.findById(complain.gang_id)
+                .catch(error => {
+                    console.error("Error finding status:", error);
+                    return null;
+                });
+
+
             // Build response object with complain details and status
             response.push({
                 SERVICE_ORDER_NO: complain.service_order_no,
@@ -46,7 +54,9 @@ console.log("complainasdasd",complain);
                 shutdown_request_date: complain.shutdown_request_date,
                 assigned_area: complain.assigned_area,
                 status: status ? status.name : null, // Set status name if found, otherwise null
-                status_id: status ? status.status_id : null // Set status ID if found, otherwise null
+                status_id: status ? status.status_id : null, // Set status ID if found, otherwise null
+                gangName: gangDetails ? gangDetails.username : null
+          
             });
         }
               
