@@ -23,6 +23,7 @@ const gangSchema = new Schema({
     tools_available: String,
     gangmember: [gangMemberSchema],
     site_pic: String,
+    current_sit_pic: String,
     equipment_pic: String,
     critical_issue: String
 });
