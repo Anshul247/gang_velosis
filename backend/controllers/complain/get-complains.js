@@ -13,13 +13,13 @@ const getComplains = async (req, res) => {
         // Fetch user's role from UserModel
         const user = await UserModel.findById(assigned_area_userID);
         if (!user) {
-            return res.status(404).json({ message: "User not found", status: 400 });
+            return res.status(404).json({complaints:[], message: "User not found", status: 400 });
         }
 
         // Fetch role details from RoleModel based on user's role
         const roleDetails = await RoleModel.findById(user.roles);
         if (!roleDetails) {
-            return res.status(404).json({ message: "Role details not found", status: 400 });
+            return res.status(404).json({ complaints:[], message: "Role details not found", status: 400 });
         }
 
         const data = {
@@ -38,17 +38,15 @@ const getComplains = async (req, res) => {
 
         console.log("status1", _ids);
         if (data.role_name === 'SSO') {
-            // for SSO
-            // const complains = await ComplainModel.find({ assigned_area_userID: assigned_area_userID })
             const complains = await ComplainModel.find({ status: { $in: _ids }, substation_id: user.substation_id })
                 
                 .populate('assigned_area_userID', '-password -otp');
 
             if (!complains || complains.length === 0) {
-                return res.status(404).json({ message: "No complaints found", status: 400 });
+                return res.status(404).json({complaints:[], message: "No complaints found", status: 400 });
             }
 
-            const response = []; // Initialize response array
+            const response = []; 
 
             // Iterate over complains array
             for (const complain of complains) {
@@ -114,15 +112,13 @@ const getComplains = async (req, res) => {
             const _ids = allStatus
                 .filter(status => statusIds.includes(status.status_id))
                 .map(status => status._id);
-            // Fetch complaints
-            // const complains = await ComplainModel.find({ status: { $in: _ids } })
             const complains = await ComplainModel.find({ status: { $in: _ids }, substation_id: user.substation_id,gang_id:assigned_area_userID })
 
 
                 .populate('assigned_area_userID', '-password -otp');
 
             if (!complains || complains.length === 0) {
-                return res.status(404).json({ message: "No complaints found", status: 400 });
+                return res.status(404).json({complaints:[], message: "No complaints found", status: 400 });
             }
 
             const response = []; // Initialize response array
@@ -136,7 +132,6 @@ const getComplains = async (req, res) => {
                         return null;
                     });
 
-                // Build response object with complain details and status
                 response.push({
                     SERVICE_ORDER_NO: complain.service_order_no,
                     COMPLAIN_NO: complain.complain_no,
@@ -190,7 +185,7 @@ const getComplains = async (req, res) => {
 
     } catch (error) {
         console.error("Error:", error);
-        return res.status(500).json({ message: "Internal Server Error", status: 500 });
+        return res.status(500).json({complaints:[], message: "Internal Server Error", status: 500 });
     }
 };
 

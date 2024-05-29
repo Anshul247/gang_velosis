@@ -16,13 +16,13 @@ const getComplainsBy1912 = async (req, res) => {
         // Fetch user's role from UserModel
         const user = await UserModel.findById(assigned_area_userID);
         if (!user) {
-            return res.status(404).json({ message: "User not found", status: 400 });
+            return res.status(404).json({complaints:[], message: "User not found", status: 400 });
         }
 
         // Fetch role details from RoleModel based on user's role
         const roleDetails = await RoleModel.findById(user.roles);
         if (!roleDetails) {
-            return res.status(404).json({ message: "Role details not found", status: 400 });
+            return res.status(404).json({complaints:[], message: "Role details not found", status: 400 });
         }
 
         const data = {
@@ -95,11 +95,11 @@ const getComplainsBy1912 = async (req, res) => {
 
         return res.status(200).json({ complaints:response, message: "Complaints fetched Successfully", status: 200 });
     }else{
-        return res.status(400).json({ message: "Gang can not get 1912 details only SSO can get", status: 400 });
+        return res.status(400).json({complaints:[], message: "Gang can not get 1912 details only SSO can get", status: 400 });
                
     }
     } catch (error) {
-        return res.status(500).json({ error: error, message: "Internal Server Error1" ,status: 500 });
+        return res.status(500).json({ complaints:[], message: "Internal Server Error" ,status: 500 });
         
     }
    
