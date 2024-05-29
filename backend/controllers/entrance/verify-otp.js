@@ -28,6 +28,7 @@ const verifyOtp = (req, res) => {
                             role_id: role._id,
                             role_name: roleDetails.name,
                             user_id: user._id,
+                            substation_id: user.substation_id,
                             message: 'OTP verified successfully.',
                             status: 200
                         };
