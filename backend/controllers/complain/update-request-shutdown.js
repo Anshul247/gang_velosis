@@ -36,10 +36,13 @@ const updateRequestShutdown = async (req, res) => {
             return res.status(400).json({ message: 'Invalid status ID', status: 400 });
         }
 
+        console.log("comp7878lain_no",complain_no);
+        // console.log("comp7878lain_no",typeof(complain_no));
+
         const complaintDetails = await ComplainModel.findOneAndUpdate(
             { complain_no: complain_no },
             { $set: { status: statusIdFound } },
-            { new: true }  // Return the updated document
+          
         );
 
         if (!complaintDetails) {

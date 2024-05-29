@@ -13,7 +13,7 @@ const getGangs = async (req, res) => {
         if (!substation_id) {
             return res.status(404).json({ message: "Sub Station Id is required", status: 400 })
         }
-                 const gangs = await UserModel.find({substation_id:substation_id,roles:'64493f8b72d4a9c3779844c0'})
+                 const gangs = await UserModel.find({substation_id:substation_id,roles:'6628e26b340864277f276fc8'})
                             .select('_id username ')
                                 .catch((error) => {
                                     console.error("Error finding user:", error);

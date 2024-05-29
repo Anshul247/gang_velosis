@@ -87,7 +87,7 @@ const getComplainsBy1912 = async (req, res) => {
                     assigned_area: complain.assigned_area,
                     status: status ? status.name : null, // Set status name if found, otherwise null
                     status_id: status ? status.status_id : null, // Set status ID if found, otherwise null
-                    gangName: gangDetails ? gangDetails.username : 'Not Assigned'
+                    gangName: gangDetails ? gangDetails.username : null
                 });
             }
 
