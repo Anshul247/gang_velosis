@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const ComplaintSchema = new Schema({
 
 // const ComplaintSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+  // _id: mongoose.Schema.Types.ObjectId,
   division_uid: {
     type: String,
     required: true

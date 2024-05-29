@@ -37,11 +37,20 @@ console.log("complainasdasd",complain);
                     return null;
                 });
 
-                const gangDetails = await UserModel.findById(complain.gang_id)
-                .catch(error => {
-                    console.error("Error finding status:", error);
-                    return null;
-                });
+                // const gangDetails = await UserModel.findById(complain.gang_id)
+                // .catch(error => {
+                //     console.error("Error finding status:", error);
+                //     return null;
+                // });
+                let gangDetails;
+                if(status.status_id == 5){
+                 gangDetails = await UserModel.findById(complain.gang_id)
+                   .catch(error => {
+                   console.error("Error finding status:", error);
+                   return null;
+               });
+           }
+
 
 
             // Build response object with complain details and status

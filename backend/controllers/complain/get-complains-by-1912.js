@@ -53,6 +53,9 @@ const getComplainsBy1912 = async (req, res) => {
 
             const response = []; // Initialize response array
 
+
+            console.log("complains",complains);
+
             // Iterate over complains array
             for (const complain of complains) {
                 // Find status for each complain
@@ -62,14 +65,16 @@ const getComplainsBy1912 = async (req, res) => {
                         return null;
                     });
 
-                    const gangDetails = await UserModel.findById(complain.gang_id)
-                    .catch(error => {
+
+                    console.log("status.status_id",status.status_id);
+                    let gangDetails;
+                     if(status.status_id == 5){
+                      gangDetails = await UserModel.findById(complain.gang_id)
+                        .catch(error => {
                         console.error("Error finding status:", error);
                         return null;
                     });
-
-                    console.log("gangD09090etails",gangDetails.username);
-                    console.log("gangD09090etails",gangDetails);
+                }
 
                 // Build response object with complain details and status
                 response.push({
@@ -82,17 +87,11 @@ const getComplainsBy1912 = async (req, res) => {
                     assigned_area: complain.assigned_area,
                     status: status ? status.name : null, // Set status name if found, otherwise null
                     status_id: status ? status.status_id : null, // Set status ID if found, otherwise null
-                    gangName: gangDetails ? gangDetails.username : null
+                    gangName: gangDetails ? gangDetails.username : 'Not Assigned'
                 });
             }
 
-          
-            // return res.status(200).json(responseObject);
-
-
-
-       
-
+          console.log("response",response);
 
         return res.status(200).json({ complaints:response, message: "Complaints fetched Successfully", status: 200 });
     }else{
@@ -100,7 +99,7 @@ const getComplainsBy1912 = async (req, res) => {
                
     }
     } catch (error) {
-        return res.status(500).json({ error: error, message: "Internal Server Error" ,status: 500 });
+        return res.status(500).json({ error: error, message: "Internal Server Error1" ,status: 500 });
         
     }
    

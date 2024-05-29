@@ -7,6 +7,7 @@ const getDataFromConsumer = require('./get-data-from-consumer');
 const assignComplain = require('./assign-complain');
 const getComplainsByGangs = require('./get-complains-by-gangs');
 const getComplainsBy1912 = require('./get-complains-by-1912');
+const getDataFromConsumerDummy = require('./get-data-from-consumer-dummy');
   
 
 
@@ -20,5 +21,6 @@ module.exports = {
     getDataFromConsumer,
     assignComplain,
     getComplainsByGangs,
-    getComplainsBy1912
+    getComplainsBy1912,
+    getDataFromConsumerDummy
  };
