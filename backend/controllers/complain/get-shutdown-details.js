@@ -133,7 +133,8 @@ const getShutdownDetails = async (req, res) => {
         }
 
         let gangDetails =  await ShutDownModel.findOne(
-            { _id: complainDetails.gang_id }
+            { gang_id: complainDetails.gang_id },
+            { complain_no: complain_no }
         );
 
         if (!gangDetails) {
