@@ -96,8 +96,12 @@ const addRequestShutdown = async (req, res) => {
         gang_id
     });
 
+
+    console.log("current_sit_pic 2152",current_sit_pic);
+    console.log("site_pic 2152",site_pic);
+
+
     try {
-        const result = await shutdownRequest.save();
 
         const allStatus = await StatusModel.find();
         const foundStatus = allStatus.find(status => status.status_id == statusId);
@@ -115,6 +119,9 @@ const addRequestShutdown = async (req, res) => {
         if (!complainUpdateResult) {
             return res.status(400).json({ message: 'Complaint No is invalid.',status:400 });
         }
+
+        const result = await shutdownRequest.save();
+
 
         res.status(200).json({
             message: "Shutdown request added successfully",

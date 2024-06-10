@@ -5,6 +5,8 @@ const ComplaintAgency = require("../../models/ComplaintAgency");
 const Complaint = require("../../models/Complain");
  
 
+
+// this api will store data in complain_details as 1912 complaints will come status will be "Not Started"
   
 
 const getDataFromConsumerDummy = async (req, res) => {

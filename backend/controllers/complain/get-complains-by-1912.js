@@ -47,7 +47,7 @@ const getComplainsBy1912 = async (req, res) => {
                 .populate('assigned_area_userID', '-password -otp');
 
             if (!complains || complains.length === 0) {
-                return res.status(404).json({ message: "No complaints found", status: 400 });
+                return res.status(404).json({ complaints:[],message: "No complaints found", status: 400 });
             }
          
 

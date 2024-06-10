@@ -8,8 +8,14 @@ const assignComplain = require('./assign-complain');
 const getComplainsByGangs = require('./get-complains-by-gangs');
 const getComplainsBy1912 = require('./get-complains-by-1912');
 const getDataFromConsumerDummy = require('./get-data-from-consumer-dummy');
+const getHierarchyBySubStation = require('./get-hierarchy-by-sub-station');
+// ------------------------------------------------------------------
+
+const addComplaint = require('./add-complaint');
   
 
+
+// router.post('/add-complaint', complainController.addComplaint);
 
 
 
@@ -22,5 +28,9 @@ module.exports = {
     assignComplain,
     getComplainsByGangs,
     getComplainsBy1912,
-    getDataFromConsumerDummy
+    getDataFromConsumerDummy,
+    getHierarchyBySubStation,
+
+    // ----------------------------------------------------------------------
+    addComplaint
  };

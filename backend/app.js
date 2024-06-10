@@ -2,8 +2,14 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const cors = require("cors");
 const app = express();
+
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+
 const PORT = process.env.PORT || 80;
 const MONGODB_URI = process.env.MONGODB_URI;
 

@@ -1,6 +1,5 @@
 
 const UserModel = require("../../models/Users");
-// const SubstationModel = require("../../models/Substation");
  
 
 const getGangs = async (req, res) => {
@@ -8,8 +7,7 @@ const getGangs = async (req, res) => {
 
     try {
 
-        // console.log("substation_id",substation_id);
-
+         
         if (!substation_id) {
             return res.status(404).json({ message: "Sub Station Id is required", status: 400 })
         }
